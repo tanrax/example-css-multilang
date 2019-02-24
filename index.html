@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <meta name="author" content="Andros Fenollosa">        
+        <meta name="keywords" content="example, multilanguage">
+        <meta name="description" content="Example of a multi-language website using only CSS">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tanrax/symbiosis-css/symbiosis.min.css">
+        <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
+        <title>Multi-language website using only CSS</title>
+        <!-- CSS -->
+        <style>
+            input[name="choice-lang"][type="radio"][value="en"]:checked ~ * [lang="es"] {
+                display: none;
+            }
+
+            input[name="choice-lang"][type="radio"][value="es"]:checked ~ * [lang="en"] {
+                display: none;
+            }
+        </style>
+        <!-- End CSS -->
+        <!-- Example for question 3: Is the selected language saved? -->
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                // Variable language
+                let choiceLang = document.querySelectorAll('input[name="choice-lang"]');
+                // Restore language from Localstorage
+                let langStorage = localStorage.getItem('lang');
+                if(langStorage !== null) choiceLang.forEach((item) => { item.value === langStorage ? item.setAttribute('checked', true) : false});
+                // Set language from LocalStorage
+                choiceLang.forEach((item) => item.addEventListener('input', (event) => { localStorage.setItem('lang', event.target.value) }));
+            });
+        </script>
+    </head>
+    <body class="font-sans bg-teal-light text-center mt-32 text-5xl">
+        🇬🇧<input name="choice-lang" class="ml-3 mr-5" type="radio" value="en" checked>
+        🇪🇸<input name="choice-lang" class="ml-3" type="radio" value="es">
+        <section>
+            <div class="container mx-auto px-4 pt-10 pb-32">
+                <h1 class="text-center text-white text-4xl"><span lang="en">Multi-language website using only...</span><span lang="es">Web multilenguaje usando solo...</span><br><span lang="en">☔️</span><span lang="es">☀️</span> <span class="text-blue text-5xl">CSS3</span> <span lang="en">💂</span><span lang="es">💃</span></h1>
+                <hr>
+                <p>
+                    <strong lang="es"><span class="text-white">¡Sin <span class="text-yellow">Javascript</span>!</span></strong>
+                    <strong lang="en"><span class="text-white">Not <span class="text-yellow">Javascript</span>!</span></strong>
+                </p>
+                <p>
+                </p>
+            </div>
+        </section>
+        <section class="bg-blue py-32 text-lg text-white">
+            <div class="container mx-auto px-4">
+                <h2 lang="es">
+                    🤔 Preguntas frecuentes
+                </h2>
+                <h2 lang="en">
+                    🤔 FAQ 
+                </h2>
+                <h3 lang="es" class="text-yellow mt-10 mb-5">¿Cual es el truco?</h3>
+                <h3 lang="en" class="text-yellow mt-10 mb-5">What's the trick?</h3>
+                <p lang="es" class="text-left">
+                    Mira el código fuente de esta página, entre la línea 13 y 21. La clave está en ocultar los elementos con el atributo <em>lang</em> <em>es</em> o <em>en</em> dependiendo del estado de los checkboxs.
+                </p>
+                <p lang="en" class="text-left">
+                    Look at the source code of this page, between line 13 and 21. The key is to hide the elements with the attribute <em>lang</em> <em>es</em> or <em>en</em> depending on the state of the checkboxes.
+                </p>
+                <h3 lang="es" class="text-yellow mt-10 mb-5">¿No es mejor usar Javascript?</h3>
+                <h3 lang="en" class="text-yellow mt-10 mb-5">Isn't it better to use Javascript?</h3>
+                <p lang="es" class="text-left">Un Diseñador Web sin conocimientos de programación podría editar y desarrollar esta web. Por otro lado hablamos de una técnica nativa al navegador y funciona aunque el usuario bloque Javascript o falle el Back-End. Por último la librería i18next en su versión reducida (i18next.min.js) ocupa 35,8Kb. Esta página contine HTML y textos en 2 idiomas pesando un total de 4Kb. Valora por ti mismo.</p>
+                <p lang="en" class="text-left">A Web Designer without programming skills could edit and develop this website. On the other hand we talk about a native technique to the browser and works even if the user blocks Javascript or fails the Back-End. Finally, the reduced version of the i18next library (i18next.min.js) occupies 35.8Kb. This page contains HTML and texts in 2 languages weighing a total of 4Kb. Rate for yourself.</p>
+                <h3 lang="es" class="text-yellow mt-10 mb-5">¿Se guardar el idioma seleccionado?</h3>
+                <h3 lang="en" class="text-yellow mt-10 mb-5">Is the selected language saved?</h3>
+                <p lang="es" class="text-left">Unicamente con CSS no es posible. En el código fuente he dejado un ejemplo de Javascript que soluciona el problema: de la línea 23 a la línea 34.</p>
+                <p lang="en" class="text-left">Only with CSS is not possible. In the source code I have left an example of Javascript that solves the problem: from line 23 to line 34.</p>
+                <p lang="es" class="text-left my-5">Funciona con esta página, selecciona el idioma que quieras y refresca el navegador.</p>
+
+                <p lang="en" class="text-left my-5">Works with this page, select the language you want and refresh the browser.</p>
+            </div>
+        </section>
+        <footer class="py-32">
+            <a href="https://programadorwebvalencia.com/" class="text-white bg-red py-4 px-6 text-xl rounded shadow-md border-2 border-red font-bold hover:bg-white hover:text-red"><span class="fuente--variable">🤩 <span lang="es">¿Quieres ver más trucos en mi blog?</span><span lang="en">Want to see more tricks on my blog?</span> 🤩</span> </a>
+        </footer>
+    </body>
+</html>
