@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo multidioma con CSS</title>
+    <style>
+        input[name="choice-lang"][type="radio"][value="en"]:checked ~ * [lang="en"] {
+            display: none;
+        }
+
+        input[name="choice-lang"][type="radio"][value="es"]:checked ~ * [lang="es"] {
+            display: none;
+        }
+    </style>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Variables
+        let choiceLang = document.querySelectorAll('input[name="choice-lang"]');
+        // Restore lang
+        let langStorage = localStorage.getItem('lang');
+        if(langStorage !== null) {
+            choiceLang.forEach((item) => { item.value === langStorage ? item.setAttribute('checked', true) : false});
+        }
+        // Set lang
+        choiceLang.forEach((item) => item.addEventListener('input', (event) => { localStorage.setItem('lang', event.target.value) }));
+    });
+    </script>
+</head>
+<body>
+
+    🇬🇧<input name="choice-lang" type="radio" value="en" checked>
+    🇪🇸<input name="choice-lang" type="radio" value="es">
+    <main>
+        <nav>
+            <ul>
+                <li lang="es"><a href="#">Inicio</a></li>
+                <li lang="es"><a href="#">Preguntas</a></li>
+                <li lang="es"><a href="#">Servicios</a></li>
+                <li lang="es"><a href="#">Equipo</a></li>
+                <li lang="es"><a href="#">Contacto</a></li>
+                <li lang="en"><a href="#">Home</a></li>
+                <li lang="en"><a href="#">FAQ</a></li>
+                <li lang="en"><a href="#">Services</a></li>
+                <li lang="en"><a href="#">Team</a></li>
+                <li lang="en"><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+        <p lang="es">Texto en castellano</p>
+        <p lang="en">Text in english</p>
+        <p>No necesario traducir</p>
+    </main>
+</body>
+</html>
